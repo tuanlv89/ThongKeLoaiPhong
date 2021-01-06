@@ -1,7 +1,6 @@
 package model;
 
 public class NhanVien extends ThanhVien{
-	private String viTri;
 	private String moTa;
 	
 	
@@ -10,20 +9,9 @@ public class NhanVien extends ThanhVien{
 	}
 
 
-	public NhanVien(String viTri, String moTa) {
+	public NhanVien(String moTa) {
 		super();
-		this.viTri = viTri;
 		this.moTa = moTa;
-	}
-
-
-	public String getViTri() {
-		return viTri;
-	}
-
-
-	public void setViTri(String viTri) {
-		this.viTri = viTri;
 	}
 
 

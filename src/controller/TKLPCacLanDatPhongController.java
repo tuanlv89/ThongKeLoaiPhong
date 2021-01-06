@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import dao.TKPhongDAO;
 import model.LoaiPhong;
+import model.TKDatPhong;
 import model.TKPhong;
 
 @WebServlet(urlPatterns = {"/tkCacLanDatPhong"}, name = "tkCacLanDatPhong")
@@ -26,11 +27,11 @@ public class TKLPCacLanDatPhongController extends HttpServlet{
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("tenLP", loaiPhong.getTen());
-		ArrayList<TKPhong> ls = (ArrayList<TKPhong>) session.getAttribute("listTKDatPhong");
-		ArrayList<TKPhong> lsTKBookedOfRoomType = new ArrayList<TKPhong>();
-		for (TKPhong tkPhong : ls) {
-			if(tkPhong.getLoaiPhong().getId()==Integer.parseInt(idLP)) {
-				lsTKBookedOfRoomType.add(tkPhong);
+		ArrayList<TKDatPhong> ls = (ArrayList<TKDatPhong>) session.getAttribute("listTKDatPhong");
+		ArrayList<TKDatPhong> lsTKBookedOfRoomType = new ArrayList<TKDatPhong>();
+		for (TKDatPhong tkDatPhong : ls) {
+			if(tkDatPhong.getPhong().getLoaiPhong().getId()==Integer.parseInt(idLP)) {
+				lsTKBookedOfRoomType.add(tkDatPhong);
 			}
 		}
 		session.setAttribute("listTKBookedRoomType", lsTKBookedOfRoomType);

@@ -1,5 +1,8 @@
+<%@page import="model.NhanVienPhucVuPhong"%>
+<%@page import="model.DichVuSuDung"%>
+<%@page import="model.DichVu"%>
 <%@page import="java.text.SimpleDateFormat"%>
-<%@page import="model.TKPhong"%>
+<%@page import="model.TKDatPhong"%>
 <%@page import="model.TKLoaiPhong"%>
 <%@page import="model.LoaiPhong"%>
 <%@page import="java.util.ArrayList"%>
@@ -196,7 +199,7 @@
 <body>
     <%
     	String tenLP = (String) session.getAttribute("tenLP");
-        ArrayList<TKPhong> listTKDatPhong = (ArrayList<TKPhong>)session.getAttribute("listTKBookedRoomType");
+        ArrayList<TKDatPhong> listTKDatPhong = (ArrayList<TKDatPhong>)session.getAttribute("listTKBookedRoomType");
         NhanVien nv = (NhanVien) session.getAttribute("admin");
     %>
     <div class="container-fluid">
@@ -204,7 +207,7 @@
             <div class="header_user">
                 <a><span><%=nv.getTen()%></span></a>
                 <a><span>|</span></a>
-                <a><span><%=nv.getViTri()%></span></a>
+                <a><span><%=nv.getMoTa()%></span></a>
                 <a><span>|</span></a>
                 <a href="" style="margin-right: 20px">
                     <span>Đăng xuất</span>
@@ -248,7 +251,7 @@
                                                 <td><%=ngay%></td>
                                                 <td><%=gioBD%></td>
                                                 <td><%=gioKT%></td>
-                                                <td><%=listTKDatPhong.get(i).getDonGia()%></td>
+                                                <td><%=listTKDatPhong.get(i).getPhong().getDonGia()%></td>
                                                 <td><%=listTKDatPhong.get(i).getTongTien()%></td>
                                                 <td><button type="button" class="viewBtn" data-toggle="modal" data-target="#ViewDetailModal<%=i%>">
                                                 	<span style="color: black">Xem chi tiết</span>
@@ -264,23 +267,32 @@
                         									<button type="button" class="close" data-dismiss="modal">&times;</button>  
                    										</div>
                    										<div class="modal-body">
-                        									<div><label>Tên phòng: </label><%="  "+listTKDatPhong.get(i).getTen()%></div>
-                          									<div><label>Loại phòng: </label><%="  "+listTKDatPhong.get(i).getLoaiPhong().getTen()%></div>
+                        									<div><label>Tên phòng: </label><%="  "+listTKDatPhong.get(i).getPhong().getTen()%></div>
+                          									<div><label>Loại phòng: </label><%="  "+listTKDatPhong.get(i).getPhong().getLoaiPhong().getTen()%></div>
                           									<div><label>Khách hàng: </label><%="  "+listTKDatPhong.get(i).getKhachHang().getTen() +" - "+ listTKDatPhong.get(i).getKhachHang().getTuoi() + " tuổi"%></div>
                     										<div><label>Số điện thoại: </label><%="  "+listTKDatPhong.get(i).getKhachHang().getSdt()%></div>
                     										<div><label>Thời gian đến: </label><%="  "+listTKDatPhong.get(i).getThoiGianDen()%></div>
                     										<div><label>Thời gian về: </label><%="  "+listTKDatPhong.get(i).getThoiGianVe()%></div>
-                    										
-                    									</div>
-                    <div class="modal-footer">
-                          <input type="submit" class="btn btn-primary">
-                              <!--<input type="reset" class="btn btn-default" value="Reset">-->
-                           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        </div>
-                      </div>
-           </form>
-         </div>
-      </div>
+                    										<%if(listTKDatPhong.get(i).getListDVSuDung().size()>0){%>
+                    											<div><label>Dịch vụ sử dụng: </label>
+                    											<%for(DichVuSuDung dvsd: listTKDatPhong.get(i).getListDVSuDung()) {%>
+                    												<div /><%=" • "+dvsd.getDichVu().getTen()+" (số lượng: "+dvsd.getSoLuong()+", đơn giá: "+ dvsd.getDichVu().getGia()+" VNĐ)" %>
+                    											<%} %>
+                    										<%}%>
+                    										<%if(listTKDatPhong.get(i).getListNVPhucVu().size()>0){%>
+                    											<div><label>Nhân viên phục vụ phòng: </label>
+                    											<%for(NhanVienPhucVuPhong nvpv: listTKDatPhong.get(i).getListNVPhucVu()) {%>
+                    												<div /><%=" • "+nvpv.getNhanVienPhucVu().getTen()%>
+                    											<%} %>
+                    										<%}%>
+                    										<div style="margin-top: 20px; text-align: right;">
+                    											<label>Thành tiền: <%="  "+listTKDatPhong.get(i).getTongTien()+" VNĐ"%></label>
+                    										</div>
+                    										</div>
+                      									</div>
+           											</form>
+         										</div>
+      										</div>
                                         <%}%>
                                     </tbody>
                                 </table>

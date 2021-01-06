@@ -15,12 +15,14 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import dao.NhanVienDAO;
+import dao.PhongThueDAO;
 import dao.TKPhongDAO;
 import dao.ThanhVienDAO;
 import model.LoaiPhong;
 import model.NhanVien;
 import model.Phong;
 import model.PhongThue;
+import model.TKDatPhong;
 import model.TKLoaiPhong;
 import model.TKPhong;
 import model.ThanhVien;
@@ -46,16 +48,16 @@ public class TKLoaiPhongController extends HttpServlet{
 		String timeStart = request.getParameter("timeStart");
 		String timeEnd = request.getParameter("timeEnd");
 		
+		PhongThueDAO pThueDAO = new PhongThueDAO();
 		TKPhongDAO tkPhongDAO = new TKPhongDAO();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		try {
 			Date thoiGianDen = sdf.parse(timeStart);
 			Date thoiGianVe = sdf.parse(timeEnd);
-			ArrayList<TKPhong> listTKPhong = tkPhongDAO.getTKPhongByStage(thoiGianDen, thoiGianVe);
+			ArrayList<TKDatPhong> listTKDatPhong = pThueDAO.getTKDatPhongByStage(thoiGianDen, thoiGianVe);
 			ArrayList<LoaiPhong> listLP = tkPhongDAO.getAllLoaiPhong();
-			ArrayList<TKLoaiPhong> listTkLoaiPhong = tkPhongDAO.getTKLoaiPhong(listTKPhong, listLP);
-			
-			System.out.println("AAAAAAAALLLLLLOOOOOOOO" + listTkLoaiPhong.size());
+			ArrayList<TKLoaiPhong> listTkLoaiPhong = tkPhongDAO.getTKLoaiPhong(listTKDatPhong, listLP);
+
 			for(int i = 0; i< listTkLoaiPhong.size(); i++) {
 				System.out.println(listTkLoaiPhong.get(i));
 			}
@@ -64,7 +66,7 @@ public class TKLoaiPhongController extends HttpServlet{
 			session.setAttribute("timeStart", timeStart);
 			session.setAttribute("timeEnd", timeEnd);
 			session.setAttribute("listRoomType", listTkLoaiPhong);
-			session.setAttribute("listTKDatPhong", listTKPhong);
+			session.setAttribute("listTKDatPhong", listTKDatPhong);
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block
@@ -74,18 +76,7 @@ public class TKLoaiPhongController extends HttpServlet{
 		String url = "/view/gdTKLoaiPhong.jsp";
 		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
     	dispatcher.forward(request, response);
-		
-		
-//		System.out.println(timeStart + "OKEEEEEEEEE" + timeEnd + listPhong.toString());
-//		//----------------
-//		HttpSession session = request.getSession();
-//		session.setAttribute("timeStart", timeStart);
-//		session.setAttribute("timeEnd", timeEnd);
-//		session.setAttribute("listRoom", listPhong);
-//		
-//		String url = "/view/gdTKLoaiPhong.jsp";
-//		RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
-//    	dispatcher.forward(request, response);
+
 			   
 	}
 }

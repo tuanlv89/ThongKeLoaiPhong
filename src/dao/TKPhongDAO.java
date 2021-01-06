@@ -13,6 +13,7 @@ import model.LoaiPhong;
 import model.NhanVien;
 import model.Phong;
 import model.PhongThue;
+import model.TKDatPhong;
 import model.TKLoaiPhong;
 import model.TKPhong;
 
@@ -167,15 +168,15 @@ public class TKPhongDAO extends DAO{
 		return listTKRoom;
 	}
 	
-	public ArrayList<TKLoaiPhong> getTKLoaiPhong(ArrayList<TKPhong> listTKPhong, ArrayList<LoaiPhong> listLP) {
+	public ArrayList<TKLoaiPhong> getTKLoaiPhong(ArrayList<TKDatPhong> listTKDatPhong, ArrayList<LoaiPhong> listLP) {
 		ArrayList<TKLoaiPhong> listTKLoaiPhong = new ArrayList<TKLoaiPhong>();
 		for(int i = 0; i< listLP.size(); i++) {
 			float totalTime = 0;
 			int totalPrice = 0;
-			for(int j = 0; j< listTKPhong.size(); j++) {
-				if(listLP.get(i).getId()==listTKPhong.get(j).getLoaiPhong().getId()) {
-					totalTime += listTKPhong.get(j).getTongGioThue();
-					totalPrice += listTKPhong.get(j).getTongTien();
+			for(int j = 0; j< listTKDatPhong.size(); j++) {
+				if(listLP.get(i).getId()==listTKDatPhong.get(j).getPhong().getLoaiPhong().getId()) {
+					totalTime += listTKDatPhong.get(j).getTongGioThue();
+					totalPrice += listTKDatPhong.get(j).getTongTien();
 				}
 			}
 			LoaiPhong loaiPhong = listLP.get(i);

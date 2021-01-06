@@ -159,7 +159,7 @@
             <div class="header_user">
                 <a><span><%=employee.getTen()%></span></a>
                 <a><span>|</span></a>
-                <a><span><%=employee.getViTri()%></span></a>
+                <a><span><%=employee.getMoTa()%></span></a>
                 <a><span>|</span></a>
                 <a href="" style="margin-right: 20px">
                     <span>Đăng xuất</span>

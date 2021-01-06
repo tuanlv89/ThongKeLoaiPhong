@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import model.DichVuSuDung;
 import model.KhachHang;
 import model.LoaiPhong;
+import model.NhanVienPhucVuPhong;
 import model.Phong;
 import model.PhongThue;
 import model.TKDatPhong;
@@ -37,6 +38,10 @@ public class PhongThueDAO extends DAO {
             	DichVuDAO dvDAO = new DichVuDAO();
             	ArrayList<DichVuSuDung> listDVSD = dvDAO.getAllDVSuDungByPhongThue(rs.getInt("id"));
             	phongThue.setListDVSuDung(listDVSD);
+            	
+            	NhanVienDAO nvDao = new NhanVienDAO();
+            	ArrayList<NhanVienPhucVuPhong> listNVPVP = nvDao.getAllNVPhucVuPhongByPhongThue(rs.getInt("id"));
+            	phongThue.setListNVPhucVu(listNVPVP);
             	
             	listPhongThue.add(phongThue);
             }

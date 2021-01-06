@@ -202,7 +202,7 @@
             <div class="header_user">
                 <a><span><%=nv.getTen()%></span></a>
                 <a><span>|</span></a>
-                <a><span><%=nv.getViTri()%></span></a>
+                <a><span><%=nv.getMoTa()%></span></a>
                 <a><span>|</span></a>
                 <a href="" style="margin-right: 20px">
                     <span>Đăng xuất</span>
