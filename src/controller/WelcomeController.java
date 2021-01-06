@@ -18,6 +18,10 @@ import model.ThanhVien;
 @WebServlet(urlPatterns = {"/gdChinhQL"})
 public class WelcomeController extends HttpServlet {
 
+	public WelcomeController() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher("view/gdChinhQL.jsp");

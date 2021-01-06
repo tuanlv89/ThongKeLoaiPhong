@@ -38,7 +38,6 @@ public class NhanVienDAO extends DAO{
 	        }catch(Exception e){
 	            e.printStackTrace();
 	        }
-	        System.out.println("MMMMMMMMMMMMMMMMMMMMM"+nv);
 	        return nv;
 	    }
 }

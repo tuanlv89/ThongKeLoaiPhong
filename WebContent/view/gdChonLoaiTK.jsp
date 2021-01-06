@@ -20,7 +20,7 @@
     		padding-left: 0;
     		padding-right: 0;
     		width: 100%;
-    		height: 600px;
+    		height: 650px;
 		}
 
 		.header {
@@ -225,11 +225,8 @@
                     
                 </div>
             </div>
-            <div class="footer"></div>
         </div>
-        <div id="templatemo_footer">
- 		<p>Lê Văn Tuấn - B16DCCN385</p>
-    </div>
-    </body>
+   </body>
 
 </html>
+<%@include file="footer.jsp" %>

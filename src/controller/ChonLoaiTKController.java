@@ -17,12 +17,18 @@ import model.ThanhVien;
 
 @WebServlet(urlPatterns = {"/gdChonLoaiTK"})
 public class ChonLoaiTKController extends HttpServlet {
-
+	public static final String LOAI_PHONG = "LOAI_PHONG";
+	public static final String LUOT_THUE = "LUOT_THUE";
+	
+	public ChonLoaiTKController() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
+	
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		RequestDispatcher rd = req.getRequestDispatcher("view/gdChonLoaiTK.jsp");
 		rd.forward(req, resp);
-		System.out.println("AAAAAAAAAAAAALLLLLLLLOOOOOOOOOOOo");
 	}
 	
 	@Override
@@ -31,9 +37,12 @@ public class ChonLoaiTKController extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String doiTuongTK = request.getParameter("doiTuongTK");
 		String kieuTK = request.getParameter("kieuTK");
-	    System.out.println("AAAAAAAAAAAAAAAAAAAAAAAAAAAa"+ doiTuongTK + kieuTK);
-	    if(!(doiTuongTK.equals("LOAI_PHONG") && kieuTK.equals("LUOT_THUE"))) {
+		String url = "/view/gdTKLoaiPhong.jsp";
+	    if(!(doiTuongTK.equals(LOAI_PHONG) && kieuTK.equals(LUOT_THUE))) {
 	    	response.sendRedirect("gdChonLoaiTK?err=fail");
+	    } else {
+	    	RequestDispatcher dispatcher = getServletContext().getRequestDispatcher(url);
+		    dispatcher.forward(request, response);
 	    }
 			   
 	}
