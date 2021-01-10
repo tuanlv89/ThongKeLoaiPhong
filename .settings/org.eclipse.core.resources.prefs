@@ -2,3 +2,6 @@ eclipse.preferences.version=1
 encoding//WebContent/view/Login.jsp=UTF-8
 encoding//WebContent/view/footer.jsp=UTF-8
 encoding//WebContent/view/gdChinhQL.jsp=UTF-8
+encoding//test/dao/DichVuDAOTest.java=UTF-8
+encoding//test/dao/KhachHangDAOTest.java=UTF-8
+encoding//test/dao/NhanVienDAOTest.java=UTF-8

@@ -17,13 +17,12 @@ public class NhanVienDAO extends DAO{
 	    
 	    public NhanVien getNhanVien(ThanhVien tv){
 	        String sql = "select `tblThanhVien`.`moTa` from tblThanhVien where id = ?";
-	        NhanVien nv = null;
+	        NhanVien nv = new NhanVien();
 	        try{
 	            PreparedStatement ps = con.prepareStatement(sql);
 	            ps.setInt(1, tv.getId());
 	            ResultSet rs = ps.executeQuery();
 	            if(rs.next()){
-	                nv = new NhanVien();
 	                nv.setId(tv.getId());
 	                nv.setMoTa(rs.getString("moTa"));
 	                nv.setDiaChi(tv.getDiaChi());
@@ -58,7 +57,7 @@ public class NhanVienDAO extends DAO{
 		        	NhanVienPhucVu nvpv = new NhanVienPhucVu();
 		        	nvpv.setId(rs.getInt("id"));
 		        	nvpv.setTen(rs.getString("ten"));
-		        	nvpv.setTenDangNhap("tenDangNhap");
+		        	nvpv.setTenDangNhap(rs.getString("tenDangNhap"));
 		        	nvpv.setMatKhau(rs.getString("matKhau"));
 		        	nvpv.setNgaySinh(rs.getDate("ngaySinh"));
 		        	nvpv.setGioiTinh(rs.getString("gioiTinh"));

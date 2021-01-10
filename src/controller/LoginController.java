@@ -48,7 +48,6 @@ public class LoginController extends HttpServlet{
 		    	if(tv.getVaiTro() == ADMIN){
 	                NhanVien admin = new NhanVienDAO().getNhanVien(tv);
 	                url = "/view/gdChinhQL.jsp";
-	                System.out.print("AAAAAAAAAAAAAA"+admin);
                     session.setAttribute("admin", admin);    
 	           }
 		    	// forward request and response to the view

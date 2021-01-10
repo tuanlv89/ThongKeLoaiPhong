@@ -90,6 +90,12 @@ public class ThanhVien {
 	public void setVaiTro(int vaiTro) {
 		this.vaiTro = vaiTro;
 	}
+	@Override
+	public String toString() {
+		return "ThanhVien [id=" + id + ", vaiTro=" + vaiTro + ", ten=" + ten + ", tenDangNhap=" + tenDangNhap
+				+ ", matKhau=" + matKhau + ", ngaySinh=" + ngaySinh + ", gioiTinh=" + gioiTinh + ", diaChi=" + diaChi
+				+ ", email=" + email + ", sdt=" + sdt + ", cmt=" + cmt + "]";
+	}
 	
     
 	

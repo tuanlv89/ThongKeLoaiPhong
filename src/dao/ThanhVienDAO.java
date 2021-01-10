@@ -40,7 +40,6 @@ public class ThanhVienDAO extends DAO{
             e.printStackTrace();
             kq = false;
         }
-        System.out.println(kq);
         return kq;
     }
 }

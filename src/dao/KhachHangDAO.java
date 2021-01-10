@@ -16,13 +16,12 @@ public class KhachHangDAO extends DAO {
 				+ "INNER JOIN `tblkhachhang` "
 				+ "ON `tblphongthue`.`tblKhachHangid` = `tblkhachhang`.`id` "
 				+ "WHERE `tblphongthue`.`id` = ?";
-		KhachHang khachHang = null;
+		KhachHang khachHang = new KhachHang();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, idPhongThue);
             ResultSet rs = ps.executeQuery();
             if(rs.next()) {
-            	khachHang = new KhachHang();
             	khachHang.setId(rs.getInt("id"));
             	khachHang.setTen(rs.getString("ten"));
             	khachHang.setTuoi(rs.getInt("tuoi"));
