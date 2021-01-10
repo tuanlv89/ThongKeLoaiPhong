@@ -75,13 +75,12 @@ public class TKPhongDAO extends DAO{
 	
 	public LoaiPhong getLoaiPhongById(int id) {
 		String sql = "SELECT * FROM `tblloaiphong` where id = ?";
-		LoaiPhong lp = null;
+		LoaiPhong lp = new LoaiPhong();
 		try{
             PreparedStatement ps = con.prepareStatement(sql);
             ps.setInt(1, id);
             ResultSet rs = ps.executeQuery();
             if (rs.next()){
-                lp = new LoaiPhong();
                 lp.setId(rs.getInt("id"));
                 lp.setTen(rs.getString("ten"));
                 lp.setDienTich(rs.getInt("dienTich"));
@@ -101,13 +100,12 @@ public class TKPhongDAO extends DAO{
 				+ "INNER JOIN `tblloaiphong` "
 				+ "ON `tblphong`.`tblLoaiPhongid` = `tblloaiphong`.`id` "
 				+ "WHERE `tblphong`.`id` = ?";
-		Phong phong = null;
+		Phong phong = new Phong();
 		try {
 			PreparedStatement ps = con.prepareStatement(sql);
 	        ps.setInt(1, id);
 	        ResultSet rs = ps.executeQuery();
 	        if(rs.next()){
-	        	phong = new Phong();
 	        	phong.setId(rs.getInt("id"));
 	        	phong.setTen(rs.getString("ten"));
 	        	phong.setMoTa(rs.getString("moTa"));
@@ -125,48 +123,48 @@ public class TKPhongDAO extends DAO{
 		return phong;
 	}
 	
-	public ArrayList<TKPhong> getTKPhongByStage(java.util.Date thoiGianDen, java.util.Date thoiGianVe) {
-		KhachHangDAO khachHangDAO = new KhachHangDAO();
-		PhongThueDAO bookedRoomDAO = new PhongThueDAO();
-		ArrayList<PhongThue> listPhongThue = bookedRoomDAO.getAllPhongThue();
-		ArrayList<TKPhong> listTKRoom = new ArrayList<TKPhong>();
-		for(int i = 0; i< listPhongThue.size(); i++) {
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			try {
-				java.util.Date timeStart = sdf.parse(listPhongThue.get(i).getThoiGianDen());
-				java.util.Date timeEnd = sdf.parse(listPhongThue.get(i).getThoiGianVe());
-				if(timeStart.compareTo(thoiGianDen) >= 0 && timeEnd.compareTo(thoiGianVe) <= 0) {
-					int tongTien = 0;
-					long soGioSD = ((timeEnd.getTime()-timeStart.getTime())/(1000 * 60 * 60))%24;
-					tongTien += soGioSD*listPhongThue.get(i).getPhong().getDonGia();
-					ArrayList<DichVuSuDung> listDVSD = listPhongThue.get(i).getListDVSuDung();
-					for(int j = 0; j< listDVSD.size(); j++) {
-						tongTien += listDVSD.get(j).getSoLuong()*listDVSD.get(j).getDichVu().getGia();
-					}
-					KhachHang khHang = khachHangDAO.getKhachHangByPhongThue(listPhongThue.get(i).getId());
-					Phong p = listPhongThue.get(i).getPhong();
-					TKPhong tkPhong = new TKPhong(
-							p.getId(), 
-							p.getTen(), 
-							p.getMoTa(), 
-							p.getDonGia(), 
-							p.getLoaiPhong(), 
-							soGioSD, 
-							tongTien, 
-							listPhongThue.get(i).getThoiGianDen(), 
-							listPhongThue.get(i).getThoiGianVe(), 
-							khHang);
-					listTKRoom.add(tkPhong);
-					System.out.println(tkPhong);
-				}
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		// List phong voi thoi gian va doanh thu
-		return listTKRoom;
-	}
+//	public ArrayList<TKPhong> getTKPhongByStage(java.util.Date thoiGianDen, java.util.Date thoiGianVe) {
+//		KhachHangDAO khachHangDAO = new KhachHangDAO();
+//		PhongThueDAO bookedRoomDAO = new PhongThueDAO();
+//		ArrayList<PhongThue> listPhongThue = bookedRoomDAO.getAllPhongThue();
+//		ArrayList<TKPhong> listTKRoom = new ArrayList<TKPhong>();
+//		for(int i = 0; i< listPhongThue.size(); i++) {
+//			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+//			try {
+//				java.util.Date timeStart = sdf.parse(listPhongThue.get(i).getThoiGianDen());
+//				java.util.Date timeEnd = sdf.parse(listPhongThue.get(i).getThoiGianVe());
+//				if(timeStart.compareTo(thoiGianDen) >= 0 && timeEnd.compareTo(thoiGianVe) <= 0) {
+//					int tongTien = 0;
+//					long soGioSD = ((timeEnd.getTime()-timeStart.getTime())/(1000 * 60 * 60))%24;
+//					tongTien += soGioSD*listPhongThue.get(i).getPhong().getDonGia();
+//					ArrayList<DichVuSuDung> listDVSD = listPhongThue.get(i).getListDVSuDung();
+//					for(int j = 0; j< listDVSD.size(); j++) {
+//						tongTien += listDVSD.get(j).getSoLuong()*listDVSD.get(j).getDichVu().getGia();
+//					}
+//					KhachHang khHang = khachHangDAO.getKhachHangByPhongThue(listPhongThue.get(i).getId());
+//					Phong p = listPhongThue.get(i).getPhong();
+//					TKPhong tkPhong = new TKPhong(
+//							p.getId(), 
+//							p.getTen(), 
+//							p.getMoTa(), 
+//							p.getDonGia(), 
+//							p.getLoaiPhong(), 
+//							soGioSD, 
+//							tongTien, 
+//							listPhongThue.get(i).getThoiGianDen(), 
+//							listPhongThue.get(i).getThoiGianVe(), 
+//							khHang);
+//					listTKRoom.add(tkPhong);
+//					System.out.println(tkPhong);
+//				}
+//			} catch (ParseException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//		}
+//		// List phong voi thoi gian va doanh thu
+//		return listTKRoom;
+//	}
 	
 	public ArrayList<TKLoaiPhong> getTKLoaiPhong(ArrayList<TKDatPhong> listTKDatPhong, ArrayList<LoaiPhong> listLP) {
 		ArrayList<TKLoaiPhong> listTKLoaiPhong = new ArrayList<TKLoaiPhong>();

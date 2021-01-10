@@ -5,3 +5,5 @@ encoding//WebContent/view/gdChinhQL.jsp=UTF-8
 encoding//test/dao/DichVuDAOTest.java=UTF-8
 encoding//test/dao/KhachHangDAOTest.java=UTF-8
 encoding//test/dao/NhanVienDAOTest.java=UTF-8
+encoding//test/dao/PhongThueDAOTest.java=UTF-8
+encoding//test/dao/TKPhongDAOTest.java=UTF-8

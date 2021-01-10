@@ -14,9 +14,7 @@ public static Connection con;
             try {
                 Class.forName(dbClass);
                 con = DriverManager.getConnection (dbUrl, "root", "");
-                System.out.println("OKEEEEEEEEEEEEEE");
             }catch(Exception e) {
-            	System.out.println("ERORRRRRRRRR" + e.toString());
             	e.printStackTrace();
             }
         }

@@ -6,6 +6,6 @@ import org.junit.runners.Suite;
 @RunWith(Suite.class)
 @Suite.SuiteClasses(
 
-{ KhachHangDAOTest.class })
+{ TKPhongDAOTest.class })
 public class TestSuite { // nothing
 }

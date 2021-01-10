@@ -33,10 +33,11 @@ public class DichVuDAOTest {
 		ArrayList<DichVuSuDung> result = dichVuDAO.getAllDVSuDungByPhongThue(idPhongThue);
 		ArrayList<DichVuSuDung> expResult = new ArrayList<DichVuSuDung>();
 		
-		DichVu dv1 = new DichVu(1, "Nước cam", "Nước cam ép", 10000);
-		DichVuSuDung dvsd1 = new DichVuSuDung(3, 6, dv1);
-		DichVu dv2 = new DichVu(3, "Bia hơi", "Nước uống có cồn 20%", 8000);
-		DichVuSuDung dvsd2 = new DichVuSuDung(2, 4, dv2);
+		DichVu dv1 = new DichVu(3, "Bia hơi", "Nước uống có cồn 20%", 8000);
+		DichVuSuDung dvsd1 = new DichVuSuDung(2, 4, dv1);
+		DichVu dv2 = new DichVu(1, "Nước cam", "Nước cam ép", 10000);
+		DichVuSuDung dvsd2 = new DichVuSuDung(3, 6, dv2);
+		
 		
 		expResult.add(dvsd1);
 		expResult.add(dvsd2);
