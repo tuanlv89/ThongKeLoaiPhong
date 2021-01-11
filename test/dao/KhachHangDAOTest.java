@@ -7,7 +7,7 @@ import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
 import org.junit.Test;
-
+import static org.junit.Assert.*;
 import model.KhachHang;
 
 
@@ -42,6 +42,7 @@ public class KhachHangDAOTest {
 		int idPhongThue = 1;
 		KhachHangDAO khachHangDAO = new KhachHangDAO();
 		KhachHang result = khachHangDAO.getKhachHangByPhongThue(idPhongThue);
+		assertNotNull(result);
 		KhachHang expResult = new KhachHang(2, "Lê Văn B", 29, "0324689513", "Thanh Xuân, Hà Nội");
 		
 		assertEquals(result.getId(), expResult.getId());

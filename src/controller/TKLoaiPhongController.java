@@ -67,6 +67,7 @@ public class TKLoaiPhongController extends HttpServlet{
 			session.setAttribute("timeEnd", timeEnd);
 			session.setAttribute("listRoomType", listTkLoaiPhong);
 			session.setAttribute("listTKDatPhong", listTKDatPhong);
+			System.out.println("AAAAAAAAa"+timeStart + timeEnd);
 			
 		} catch (ParseException e) {
 			// TODO Auto-generated catch block

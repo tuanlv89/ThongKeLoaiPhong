@@ -196,7 +196,17 @@
     	String timeEnd = (String) session.getAttribute("timeEnd");
         ArrayList<TKLoaiPhong> listRoom = (ArrayList<TKLoaiPhong>)session.getAttribute("listRoomType");
         NhanVien nv = (NhanVien) session.getAttribute("admin");
+        if(timeStart==null || timeEnd==null){
+            %><script type="text/javascript">  	
+                alert("Vui lòng nhập đầy đủ thời gian bắt đầu và kết thúc thống kê!");     
+            </script> <%
+         }
     %>
+    <script>
+		function myFunction() {
+  			alert("Không có dữ liệu thống kê!");   
+		}
+		</script>
     <div class="container-fluid">
         <div class="header">
             <div class="header_user">
@@ -217,9 +227,9 @@
                     <div class="search-bar" style="margin-top: -50px; text-align: center; margin-left: 150px;">
                         <h6>Chọn thời gian thống kê:</h6>
                         <form action="<%=request.getContextPath()%>/gdTKLoaiPhong" method="post">
-                        	<span>Ngày bắt đầu: </span>
+                        	<span>Ngày bắt đầu: </span><span style="color: red">*</span>
                             <input type="date" class="input-search" name="timeStart" <%if(timeStart!=null){%>value="<%=timeStart%>" <%}%>/>
-                            <span style="margin-left: 20px">Ngày kết thúc: </span>
+                            <span style="margin-left: 20px">Ngày kết thúc: </span><span style="color: red">*</span>
                              <input type="date" class="input-search" name="timeEnd" <%if(timeEnd!=null){%>value="<%=timeEnd%>" <%}%>/>
                             <input type="submit" value="Tìm" style="margin-left: 20px"/>
                         </form>
@@ -246,7 +256,8 @@
                                                 <td><%=listRoom.get(i).getTen()%></td>
                                                 <td><%=listRoom.get(i).getTongGioThue()%></td>
                                                 <td><%=listRoom.get(i).getTongTien()%></td>
-                                                <td><a href="tkCacLanDatPhong?idLoaiPhong=<%=listRoom.get(i).getId()%>">Xem chi tiết</a></td>
+                                                <%if(listRoom.get(i).getTongGioThue()==0){%><td><a onclick="myFunction()">Xem chi tiết</a></td> <%}%>
+                                                <%if(listRoom.get(i).getTongGioThue()!=0){%><td><a href="tkCacLanDatPhong?idLoaiPhong=<%=listRoom.get(i).getId()%>">Xem chi tiết</a></td> <%}%>
                                             </tr>
                                         <%}%>
                                     </tbody>

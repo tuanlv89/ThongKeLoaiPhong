@@ -31,6 +31,7 @@ public class DichVuDAOTest {
 		int idPhongThue = 1;
 		DichVuDAO dichVuDAO = new DichVuDAO();
 		ArrayList<DichVuSuDung> result = dichVuDAO.getAllDVSuDungByPhongThue(idPhongThue);
+		assertNotNull(result);
 		ArrayList<DichVuSuDung> expResult = new ArrayList<DichVuSuDung>();
 		
 		DichVu dv1 = new DichVu(3, "Bia hơi", "Nước uống có cồn 20%", 8000);
@@ -57,7 +58,7 @@ public class DichVuDAOTest {
 		int idPhongThue = -1;
 		DichVuDAO dichVuDAO = new DichVuDAO();
 		ArrayList<DichVuSuDung> result = dichVuDAO.getAllDVSuDungByPhongThue(idPhongThue);
-		
+		assertNotNull(result);
 		assertEquals(0, result.size());
 	}
 }
